@@ -1,8 +1,13 @@
+import './global.css'
+import { Header } from './components/Header'
+import { List } from './components/List'
+
 export function App() {
 
   return (
     <>
-      <h1>HELLO MAN</h1>
+     <Header />
+    <List />
     </>
   )
 }

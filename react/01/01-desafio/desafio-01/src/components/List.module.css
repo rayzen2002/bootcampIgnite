@@ -1,0 +1,95 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.textArea{
+  width: 40vw;
+  height: 4rem;
+  margin-top: -2rem;
+  border-radius: 12px;
+  background: var(--gray-500);
+  resize: none;
+  padding: 1rem;
+  line-height: 1.4;
+  font-size: 1rem;
+  color: #FFF;
+}
+.listMenu {
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.createButton{
+  background: var(--blue-dark);
+  height: 100%;
+  margin-top: -2rem;
+  width: 6rem;
+  border-radius: 12px;
+  color: #FFF;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.tasks{
+  display: flex;
+  margin-top: 4rem;
+  width: 45.75vw;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+}
+
+.createdTasks{
+  color: var(--blue);
+}
+
+.concludedTasks{
+  color: var(--purple-dark);
+}
+
+.createdTasksContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+.concludedTasksContainer{
+  display: flex;
+  gap: 0.5rem;
+}
+
+.concludedCount{
+  display: flex;
+  justify-content: center;
+  color: #FFF;
+  background: var(--gray-500);
+  border-radius: 8px;
+  width: 1.5rem;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+}
+.clipboard{
+  justify-content: center;
+  height: 3.5rem;
+  margin: 3rem 0 1.5rem 0;
+}
+
+.emptyList{
+  color: var(--gray-300);
+  font-size: 1rem;  
+  font-weight: bold;
+}
+
+.tasksContainer{
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,22 @@
+.taskContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #262626;
+  border-radius: 6px;
+  padding: 1rem;
+  background: var(--gray-500);
+  color: #FFF;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.trashButton{
+  border: 0;
+  background: var(--gray-500);
+}
+
+.doneButton{
+  border: 0;
+  background: var(--gray-500);
+}

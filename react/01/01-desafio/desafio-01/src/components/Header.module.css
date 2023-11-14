@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+}
+.background {
+  width: 100vw;
+}
+
+.logo{
+ display: flex;
+ justify-content: start;
+ aligm-items: start;
+ margin: 0 -52.5vw;
+}
