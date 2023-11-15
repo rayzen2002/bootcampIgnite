@@ -20,3 +20,8 @@
   border: 0;
   background: var(--gray-500);
 }
+
+.doneTask{
+  text-decoration: line-through;
+  color: var(--gray-300)
+}

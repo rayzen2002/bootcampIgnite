@@ -1,32 +1,51 @@
-import { useState } from 'react';
-import trash from '../assets/trash.svg';
-import style from './Task.module.css';
-import check from '../assets/check.svg';
-import concluded from '../assets/concluded.svg';
+import {  useState } from 'react';
+import trash from '../assets/trash.svg'
+import style from './Task.module.css'
+import check from '../assets/check.svg'
+import concluded from '../assets/concluded.svg'
 
-interface TaskProps {
+interface TasksProps {
+  id?: number;
   task: string;
-  onDeleteTask: (task: string) => void;
-  onToggleTask: (isDone: boolean) => void;
+  onDeleteTask: (task: string , isDone : boolean) => void;
+  onToggle: (isDone: boolean) => void;
 }
 
-export function Task(props: TaskProps) {
-  const [doneTask, setDoneTask] = useState(false);
-
-  function handleDoneTasks() {
-    setDoneTask((prevDoneTask) => !prevDoneTask);
-    props.onToggleTask(!doneTask);
+export function Task(props: TasksProps){
+   const [doneTask,setDoneTask] = useState(false);
+  function handleDeleteTask(){
+    props.onDeleteTask(props.task , doneTask)
   }
-
-  return (
+  function handleDoneTasks(){
+   doneTask ? setDoneTask(false) : setDoneTask(true);
+   props.onToggle(doneTask)
+  }
+  return(
     <div className={style.taskContainer}>
       <button className={style.doneButton} onClick={handleDoneTasks}>
-        {doneTask ? <img src={concluded} alt="" /> : <img src={check} alt="" />}
+        { doneTask ?  
+       
+        <img src={concluded} alt="" /> 
+      
+       
+        :  
+      
+        <img src={check} alt="" />
+       
+        
+        }   
       </button>
-      <p>{props.task}</p>
-      <button className={style.trashButton} onClick={() => props.onDeleteTask(props.task)}>
+      {doneTask ? 
+       <p className={style.doneTask}>{props.task}</p>
+      :
+      <p >{props.task}</p>
+    }
+      {/* <input type="checkbox" /> */}
+      
+      <button className={style.trashButton} onClick={handleDeleteTask}> 
         <img src={trash} alt="" />
       </button>
     </div>
-  );
+  )
 }
+
