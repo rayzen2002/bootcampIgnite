@@ -70,12 +70,14 @@
   color: #FFF;
   background: var(--gray-500);
   border-radius: 8px;
-  width: 1.5rem;
+  width: 5rem;
 }
 
 .taskList {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .clipboard{
   justify-content: center;

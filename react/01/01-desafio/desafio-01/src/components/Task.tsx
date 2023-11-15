@@ -1,46 +1,32 @@
-import {  useState } from 'react';
-import trash from '../assets/trash.svg'
-import style from './Task.module.css'
-import check from '../assets/check.svg'
-import concluded from '../assets/concluded.svg'
+import { useState } from 'react';
+import trash from '../assets/trash.svg';
+import style from './Task.module.css';
+import check from '../assets/check.svg';
+import concluded from '../assets/concluded.svg';
 
-interface TasksProps {
-  id?: number;
+interface TaskProps {
   task: string;
-  counter: number;
   onDeleteTask: (task: string) => void;
+  onToggleTask: (isDone: boolean) => void;
 }
 
-export function Task(props: TasksProps){
-    const [counter,setCounter] = useState (0);
-   const [doneTask,setDoneTask] = useState(false);
-  function handleDeleteTask(){
-    props.onDeleteTask(props.task)
+export function Task(props: TaskProps) {
+  const [doneTask, setDoneTask] = useState(false);
+
+  function handleDoneTasks() {
+    setDoneTask((prevDoneTask) => !prevDoneTask);
+    props.onToggleTask(!doneTask);
   }
-  function handleDoneTasks(){
-    if(doneTask){
-      setDoneTask(false)
-      setCounter(counter - 1)
-   
-    }else if (!doneTask){
-      setDoneTask(true)
-      setCounter(counter + 1)
-    }
-    console.log(props.counter)
-    console.log(counter)
-   return props.counter;
-  }
-  return(
+
+  return (
     <div className={style.taskContainer}>
       <button className={style.doneButton} onClick={handleDoneTasks}>
-        { doneTask ?  <img src={concluded} alt="" /> :  <img src={check} alt="" />}   
+        {doneTask ? <img src={concluded} alt="" /> : <img src={check} alt="" />}
       </button>
-      {/* <input type="checkbox" /> */}
       <p>{props.task}</p>
-      <button className={style.trashButton} onClick={handleDeleteTask}> 
+      <button className={style.trashButton} onClick={() => props.onDeleteTask(props.task)}>
         <img src={trash} alt="" />
       </button>
     </div>
-  )
+  );
 }
-
