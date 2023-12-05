@@ -2,6 +2,8 @@ import http from 'node:http';
 import { json } from './middlewares/json.js';
 import { Database } from './middlewares/database.js';
 import { randomUUID } from 'node:crypto';
+import { routes } from './middlewares/routes.js';
+import { extractQueryParams } from './utils/extract-query-params.js';
 
 const users = [];
 const database = new Database()
@@ -9,27 +11,21 @@ const server = http.createServer(async(req,res) => {
  
   const { method, url } = req;
   await json(req,res)
-  
-  if(method === 'GET' && url === '/users'){
-    const users = database.select('users')
-    return res
-    .end(JSON.stringify(users))
+  const route = routes.find(route => {
+    console.log(route.path)
+    return route.method === method && route.path.test(url)
+  })
+  if(route){
+    const routeParams = req.url.match(route.path)
+    // console.log(extractQueryParams(routeParams.groups.query))
+    console.log(routeParams.groups)
+    const { query , ...params } = routeParams.groups
+    req.params = params
+    req.query = query ? extractQueryParams(query) : {}
+    return route.handler(req,res)
   }
-  if(method === 'POST' && url === '/users'){
-    const { name , email } = req.body
-    // users.push({
-    //   name,
-    //   email
-    // })
-    const user = {
-      id : randomUUID(),
-      name,
-      email
-    }
-    database.insert('users', user)
-    return res.writeHead(201).end()
-  }
-  return res.writeHead(404).end('Not Found')
+
+  return res.writeHead(404).end()
 })
 
-server.listen(3333);
+server.listen(3334);
