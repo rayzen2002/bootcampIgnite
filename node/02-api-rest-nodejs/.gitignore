@@ -1,6 +1,8 @@
 node_modules
-db/app.db
+db/*.db
 .vscode
 .env
 .env.test
+dist
+
 
