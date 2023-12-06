@@ -196,7 +196,7 @@
     },
     "tabnine.experimentalAutoImports": true,
     "gitlens.codeLens.enabled": false,
-    "workbench.iconTheme": "symbols",
+    "workbench.iconTheme": "icons",
     "polacode.transparentBackground": true,
     "polacode.target": "snippet",
     "editor.minimap.enabled": false,
