@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "tsx --watch src/server.ts",
     "build": "tsup src --out-dir build",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "services:up" : "docker compose -f infra/compose.yaml up -d",
+    "services:down" : "docker compose -f infra/compose.yaml down"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +16,13 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "2.2.2",
     "@types/node": "20.11.20",
+    "prisma": "5.10.2",
     "tsup": "8.0.2",
     "tsx": "4.7.1",
     "typescript": "5.3.3"
   },
   "dependencies": {
+    "@prisma/client": "5.10.2",
     "dotenv": "16.4.5",
     "fastify": "4.26.1",
     "zod": "3.22.4"
