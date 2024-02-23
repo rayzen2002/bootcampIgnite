@@ -237,7 +237,7 @@ for (let i = 0; i < 200; i++) {
     ]),
     totalInCents,
     createdAt: faker.date.recent({
-      days: 40,
+      days: 1,
     }),
   })
 }

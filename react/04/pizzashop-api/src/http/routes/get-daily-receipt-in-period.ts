@@ -12,10 +12,10 @@ export const getDailyReceiptInPeriod = new Elysia().use(authentication).get(
 
     const { from, to } = query
 
-    const startDate = from ? dayjs(from) : dayjs().subtract(7, 'd')
-    const endDate = to ? dayjs(to) : from ? startDate.add(7, 'days') : dayjs()
+    const startDate = from ? dayjs(from) : dayjs().subtract(30, 'd')
+    const endDate = to ? dayjs(to) : from ? startDate.add(30, 'days') : dayjs()
 
-    if (endDate.diff(startDate, 'days') > 7) {
+    if (endDate.diff(startDate, 'days') > 30) {
       set.status = 400
 
       return {

@@ -1,21 +1,24 @@
 import './global.css'
-import { Toaster } from 'sonner'
 
+import { QueryClientProvider } from '@tanstack/react-query'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { RouterProvider } from 'react-router-dom'
+import { Toaster } from 'sonner'
 
-import { router } from './routes'
 import { ThemeProvider } from './components/theme/theme-provider'
+import { queryClient } from './lib/react-query'
+import { router } from './routes'
 
 export function App() {
   return (
     <HelmetProvider>
       <Helmet titleTemplate="%s | pizza.shop" />
-      <Toaster richColors/>
+      <Toaster richColors />
       <ThemeProvider defaultTheme="dark" storageKey="pizzashop-theme">
-      <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
       </ThemeProvider>
-      
     </HelmetProvider>
   )
 }
