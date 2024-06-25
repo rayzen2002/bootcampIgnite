@@ -4,13 +4,14 @@ import { makeFetchNearByGymsService } from '@/services/factories/make-fetch-near
 
 export async function nearBy(request: FastifyRequest, reply: FastifyReply) {
   const nearByGymsQuerySchema = z.object({
-    latitude: z.number().refine((value) => {
+    latitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
-    longitude: z.number().refine((value) => {
+    longitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 180
     }),
   })
+
   const { latitude, longitude } = nearByGymsQuerySchema.parse(request.query)
 
   const fetchNearByGymsService = makeFetchNearByGymsService()
@@ -19,5 +20,5 @@ export async function nearBy(request: FastifyRequest, reply: FastifyReply) {
     userLongitude: longitude,
   })
 
-  return reply.status(201).send({ gyms })
+  return reply.status(200).send({ gyms })
 }

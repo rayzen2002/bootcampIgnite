@@ -14,7 +14,7 @@ export class FetchNearByGymsService {
     userLatitude,
     userLongitude,
   }: fetchNearByGymsServiceRequest): Promise<fetchNearByGymsServiceResponse> {
-    const gyms = await this.gymRepository.findManyNearBy({
+    const gyms = await this.gymRepository.findManyNearby({
       latitude: userLatitude,
       longitude: userLongitude,
     })
