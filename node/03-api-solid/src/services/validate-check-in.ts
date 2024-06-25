@@ -5,7 +5,6 @@ import dayjs from 'dayjs'
 import { LateCheckInValidationError } from './errors/late-checkin-validation-error'
 
 interface ValidateCheckInServiceRequest {
-  userId: string
   checkInId: string
 }
 interface CheckInServiceResponse {

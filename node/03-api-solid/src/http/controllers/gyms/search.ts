@@ -7,7 +7,7 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
     query: z.string(),
     page: z.coerce.number().min(1).default(1),
   })
-  const { query, page } = searchGymsQuerySchema.parse(request.params)
+  const { query, page } = searchGymsQuerySchema.parse(request.query)
 
   const createGymService = makeSearchGymsService()
   const { gyms } = await createGymService.execute({
