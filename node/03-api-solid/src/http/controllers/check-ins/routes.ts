@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { verifyJWT } from '../../middlewares/verify-jwt'
 import { create } from './create'
-import { history, validate } from './history'
+import { history } from './history'
 import { metrics } from './metrics'
 
 export async function checkInsRoutes(app: FastifyInstance) {
