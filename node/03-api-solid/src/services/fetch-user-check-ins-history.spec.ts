@@ -1,7 +1,6 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
-import { CheckInService } from './checkin'
-import { FetchUserCheckinsService } from './fetch-user-check-ins-history'
+import { FetchUserCheckinsService } from './FetchUserCheckInsHistoryUseCase'
 
 describe('Fetch Check in History service', () => {
   let checkInsRepository: InMemoryCheckInsRepository

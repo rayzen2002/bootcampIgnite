@@ -1,5 +1,5 @@
-import { FetchUserCheckinsService } from '../fetch-user-check-ins-history'
 import { PrismaCheckInsRepository } from '@/repositories/prisma/prisma-check-ins-repository'
+import { FetchUserCheckinsService } from '../FetchUserCheckInsHistoryUseCase'
 
 export function makeFetchUserCheckinsService() {
   const checkinsRepository = new PrismaCheckInsRepository()

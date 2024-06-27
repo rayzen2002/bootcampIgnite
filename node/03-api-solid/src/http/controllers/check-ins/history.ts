@@ -1,17 +1,22 @@
+import { makeFetchUserCheckinsService } from '@/services/factories/make-fetch-user-check-ins-history-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { makeValidateCheckInService } from '@/services/factories/make-validate-check-in-service'
 
 export async function history(request: FastifyRequest, reply: FastifyReply) {
-  const validateCheckInParamsSchema = z.object({
-    checkInId: z.string().uuid(),
-  })
-  const { checkInId } = validateCheckInParamsSchema.parse(request.params)
-
-  const validateCheckInService = makeValidateCheckInService()
-  await validateCheckInService.execute({
-    checkInId,
+  const checkInHistoryQuerySchema = z.object({
+    page: z.coerce.number().min(1).default(1),
   })
 
-  return reply.status(204).send()
+  const { page } = checkInHistoryQuerySchema.parse(request.query)
+
+  const fetchUserCheckInsHistoryUseCase = makeFetchUserCheckinsService()
+
+  const { checkIns } = await fetchUserCheckInsHistoryUseCase.execute({
+    page,
+    userId: request.user.sub,
+  })
+
+  return reply.status(200).send({
+    checkIns,
+  })
 }
