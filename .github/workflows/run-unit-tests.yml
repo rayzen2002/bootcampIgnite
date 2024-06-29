@@ -15,4 +15,6 @@ jobs:
         cache: 'npm'
       -run: npm ci
 
-      -run: npm run test
+      -name: Run tests
+        working-directory: node/03-api-solid
+        run: npm run test
