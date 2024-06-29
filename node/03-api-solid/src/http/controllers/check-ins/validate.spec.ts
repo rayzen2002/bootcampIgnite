@@ -12,7 +12,7 @@ describe('Create CheckIn (e2e)', () => {
     await app.close()
   })
   it('Should be able to validate a CheckIn', async () => {
-    const { token } = await createAndAuthenticateUser(app)
+    const { token } = await createAndAuthenticateUser(app, true)
     const user = await prisma.user.findFirstOrThrow()
     const gym = await prisma.gym.create({
       data: {
@@ -21,19 +21,23 @@ describe('Create CheckIn (e2e)', () => {
         longitude: -49.6401091,
       },
     })
-    let checkIn = await prisma.checkin.create({data:{
+    let checkIn = await prisma.checkin.create({
+      data: {
         gym_id: gym.id,
-        user_id: user.id
-    }})
+        user_id: user.id,
+      },
+    })
     const response = await request(app.server)
       .patch(`/check-ins/${checkIn.id}/validate`)
       .set('Authorization', `Bearer ${token}`)
       .send()
 
     expect(response.statusCode).toEqual(204)
-    checkIn = await prisma.checkin.findUniqueOrThrow({where: {
-        id: checkIn.id
-    }})
+    checkIn = await prisma.checkin.findUniqueOrThrow({
+      where: {
+        id: checkIn.id,
+      },
+    })
     expect(checkIn.validatedAt).toEqual(expect.any(Date))
   })
 })

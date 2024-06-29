@@ -35,7 +35,6 @@ describe('CheckIn service', () => {
       userLatitude: 0,
       userLongitude: 0,
     })
-    console.log(checkIn.createdAt)
     expect(checkIn.id).toEqual(expect.any(String))
   })
   it('Should not be able to check in twice in the same day', async () => {

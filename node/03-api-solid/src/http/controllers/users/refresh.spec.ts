@@ -24,7 +24,6 @@ describe('Refresh token (e2e', () => {
       .patch('/token/refresh')
       .set('Cookie', cookies)
       .send()
-    console.log(response)
     expect(response.statusCode).toEqual(200)
     expect(response.body).toEqual({
       token: expect.any(String),
