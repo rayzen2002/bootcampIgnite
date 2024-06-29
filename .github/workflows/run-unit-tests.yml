@@ -9,15 +9,12 @@ jobs:
   run-unit-tests:
     name: Run Unit Tests
     runs-on: ubuntu-latest
+    container:
+      image: node:20
 
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
 
       - name: Instalar dependências
         run: npm ci
