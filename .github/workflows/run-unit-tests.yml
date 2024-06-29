@@ -1,6 +1,9 @@
 name: Run unit Tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - main 
 
 jobs:
   run-unit-tests:
@@ -8,13 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -uses: actions/checkout@v3
-      -uses: actions/setup-node@v3
-      with:
-        -node-version: 18
-        cache: 'npm'
-      -run: npm ci
+      - name: Checkout código
+        uses: actions/checkout@v3
 
-      -name: Run tests
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes
         working-directory: node/03-api-solid
         run: npm run test
