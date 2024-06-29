@@ -15,7 +15,8 @@
     "test:e2e": "vitest run --dir src/http",
     "test:e2e:watch": "vitest --dir src/http",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "services:up": "docker compose -f infra/compose.yaml up -d"
   },
   "keywords": [],
   "author": "",
