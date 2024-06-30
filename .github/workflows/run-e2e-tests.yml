@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+          cache-dependency-path: node/03-api-solid/package-lock.json
 
       - name: Install dependencies
         working-directory: node/03-api-solid
