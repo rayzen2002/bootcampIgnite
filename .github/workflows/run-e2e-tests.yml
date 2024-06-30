@@ -18,20 +18,20 @@ jobs:
           POSTGRESQL_DATABASE: apisolid
 
     steps:
-      - name: Checkout código
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configurar Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
 
-      - name: Instalar dependências
-        run: npm ci
+      - name: Install dependencies
         working-directory: node/03-api-solid
+        run: npm ci
 
-      - name: Executar testes
+      - name: Run tests
         working-directory: node/03-api-solid
         run: npm run test:e2e
         env:
