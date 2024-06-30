@@ -23,6 +23,8 @@
         cd node/03-api-solid
         npm ci
 
+      name: Executar testes
+      working-directory: node/03-api-solid
       - run: npm run test:e2e
         env:
           JWT_SECRET: test
