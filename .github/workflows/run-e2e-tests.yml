@@ -28,8 +28,9 @@ jobs:
       - run: |
           cd node/03-api-solid
           npm ci
-
-      - run: npm run test:e2e
+      name: Executar testes
+        working-directory: node/03-api-solid
+        run: npm run test:e2e
         env:
           JWT_SECRET: testing
           DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
