@@ -36,11 +36,12 @@ describe('Validate CheckIn service', () => {
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
   it('Should not be able to validate the checkin after 20 minutes of its creation', async () => {
-    vi.setSystemTime(new Date(2024, 0, 1, 13, 40))
+    vi.setSystemTime(new Date(2024, 6, 29))
     const createdCheckIn = await checkInsRepository.create({
       gym_id: '01',
       user_id: 'user-01',
     })
+    console.log(createdCheckIn)
 
     vi.advanceTimersByTime(1000 * 60 * 21)
     await expect(() =>
