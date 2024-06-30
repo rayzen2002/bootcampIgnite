@@ -1,22 +1,29 @@
-name: Run E2E Tests
-
-on: [pull_request]
-
-jobs:
-  run-e2e-tests:
     name: Run E2E Tests
     runs-on: ubuntu-latest
-    container:
-      image: node:20
+
+    services:
+      postgres:
+        image: bitnami/postgresql
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: apisolid
 
     steps:
-      - name: Checkout Codigo
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Instalar dependencias
-      run: | 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - run: | 
         cd node/03-api-solid
         npm ci
-      - name: Executar testes
-      working-directory: node/03-api-solid
-      run: npm run test:e2e
+
+      - run: npm run test:e2e
+        env:
+          JWT_SECRET: test
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
